@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- ==========================================================================\
+|
+|   To learn how to make your own language parser, please check the following
+|   link:
+|       https://npp-user-manual.org/docs/function-list/
+|
+\=========================================================================== -->
+<NotepadPlus>
+	<functionList>
+		<!-- =========================================================== [ C ] -->
+		<parser
+			displayName="DXL"
+			id         ="dxl_function"
+			commentExpr="(?x)                                               # Utilize inline comments (see `RegEx - Pattern Modifiers`)
+							(?s:\x2F\x2A.*?\x2A\x2F)                        # Multi Line Comment
+						|	(?m-s:\x2F{2}.*$)                               # Single Line Comment
+						|	(?s:\x22(?:[^\x22\x5C]|\x5C.)*\x22)             # String Literal - Double Quoted
+						|	(?s:\x27(?:[^\x27\x5C]|\x5C.)*\x27)             # String Literal - Single Quoted
+						"
+		>
+			<function
+				mainExpr="(?x)(?'type'
+bool|char|int|real|void|string|Skip|Date|Buffer|Array|Stream|Regexp|
+Folder|Item|Project|
+Module|ModName_|ModuleVersion|ModuleProperties|
+Object|ObjectRef__|
+AttrDef|AttrType|
+Filter|LinkFilter|View|ViewDef|Sort|
+Column|Justification|
+RichText|RichTextParagraph|
+User|Group|GroupList|UserList|UserNotifyList|UserElement_|
+Baseline|BaselineSet|BaselineSetDefinition|AccessRec|Permission|
+History|HistoryType|HistorySession|
+Link|LinkRef|Linkset|ExternalLink|ExternalLinkDirection|ExternalLinkBehaviour|LinkModuleDescriptor|
+SignatureInfoSpecifier__|SignatureInfo|SignatureEntry|
+Template|
+PageLayout|
+SpellingOptions|Dictionary|AlternativeWord|GrammarRules|
+Trigger|
+EmbeddedOleObject|OleAutoObj|OleAutoArgs|
+Icon|DB|DBE|DropEvent|
+PartitionDefinition|PartitionModule|PartitionFile|PartitionAttribute|PartitionView|PartitionPermission|
+RifDefinition|RifModuleDefinition|RifImport|
+IntegrityResultsData|IntegrityCheckItem|IntegrityProblem|ProblemItem|
+Discussion|Comment|DiscussionStatus|
+ArchiveItem|ArchiveData|ArchiveInclusionDescriptor|ZipType|
+Lock|LockList|
+HttpResponse|HttpHeader|HttpHeaderEntry|HttpBody|HttpVerb|Future|
+OSLCDXLService|
+ConfType|ConfStream|Stat|IPC|Locale|LoginPolicy
+)\ (?'name'[^key][\w]+)\ *\((?'parameters'.*?)\)"
+>
+				<!-- <functionName>
+					<nameExpr expr="\ (?'name'[\w_]+)\ *\((?'parameters'.*)\)" />
+				</functionName> -->
+			</function>
+		</parser>
+	</functionList>
+</NotepadPlus>
